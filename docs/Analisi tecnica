@@ -1,0 +1,25 @@
+classe Contatto{
+String Nome
+String Cognome
+String Telefono
+Boolean Nascosto
+Get Nome()
+Get Cognome()
+Get Telefono()
+Get Nascosto()
+Set Nome()
+Set Cognome()
+Set Telefono()
+Set Nascosto()
+}
+
+classe Main{
+Contatto[] Gestore
+Metodo Menu{
+Metodo Inserimento Contatti
+Metodo Modifica contatti
+Metodo Cerca contatto (cerca tramite nome, e avra la funzione per andare nell'altro gestore)
+Metodo Eliminazione contatti
+Metodo Visualizza contatti
+}
+}

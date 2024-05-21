@@ -1,0 +1,15 @@
+Il menu permetterà all’utente che azione vuole fare tra quelle elencate nei requisisti escluso
+il menu stesso.
+Inserimento contatti sarà un metodo che andrà ad aggiungere un contatto che chiederà le
+seguenti informazioni:
+- Nome
+- Cognome
+- Telefono
+- Nascosto
+Dove nascosto sarà vero o falso.
+Ma nascosto sarà visibile solo nella rubrica nascosta che ciederà una password, ma per non far conoscere l'esistenza della rubrica nascosta
+bisognera inserire la passowrd dopo aver selezionato cerca, quella di default sarà "123456"
+ogni comando che viene eseguito su un contatto nascosto non sara eseguito se si è nella rubrica normale
+si avrà la possibilità di cambiare la password nella rubrica normale
+verrano visualizzate le ultime chiamate e si ricordera tutto dall'ultimo acesso.
+
