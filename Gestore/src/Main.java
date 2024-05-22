@@ -14,13 +14,14 @@ public class Main {
                 "[2] Visualizzazione",
                 "[3] Ricerca",
                 "[4] Ricerca Numero telefonico",
-                "[5] Modifica contatto",
+                "[5] Modifica",
                 "[6] cancellazione",
                 "[7] Carica saldo telefonico",
                 "[8] Telefona",
                 "[9] Salva file",
                 "[10] Carica file",
                 "[11] Fine"};
+
         String password="123456";
         boolean Sitel = true;  // Variabile di controllo per la lettura dei dati
         final int nMax = 3;    // Numero massimo di contatti gestiti
@@ -111,6 +112,7 @@ public class Main {
                             if(Hidden){
                                 System.out.println("Se vuoi rendere il contatto visibile inserisci: 2 ");
                                 System.out.println("Se vuoi rendere il contatto non visibile inserisci: 3 ");
+                                System.out.println("Se vuoi modificare la password inserisci: 4 ");
                             }
                             scelta = keyboard.nextInt();
                             keyboard.nextLine();
@@ -128,6 +130,16 @@ public class Main {
                             } else if(scelta == 3 && Hidden){
                                 gestore[posizione].nascosto = true;
                                 System.out.println("Contatto reso non visibile");
+                                Wait(2);
+                            } else if(scelta == 4 && Hidden){
+                                System.out.println("Inserisci la password vecchia");
+                                String passTemp=keyboard.nextLine();
+                                if(passTemp==password){
+                                    System.out.println("Inserisci la password nuova");
+                                    password=keyboard.nextLine();
+                                }else{
+                                    System.out.println("Password errata");
+                                }
                                 Wait(2);
                             }
                         } else {
