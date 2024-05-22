@@ -9,6 +9,7 @@ seguenti informazioni:
 Dove nascosto sarà vero o falso.
 Ma nascosto sarà visibile solo nella rubrica nascosta che ciederà una password, ma per non far conoscere l'esistenza della rubrica nascosta
 bisognera inserire la passowrd dopo aver selezionato cerca, quella di default sarà "123456"
+Per accedere al gestore nascosto bisogna scegliere l'opzione cerca e inserire nel nome:"123456" o la password scelta poi continuare normalmente comparirà il messaggio "password inserita corretta" per uscire dal menu nascosta bisogna ripetere il procedimento
 ogni comando che viene eseguito su un contatto nascosto non sara eseguito se si è nella rubrica normale
 si avrà la possibilità di cambiare la password nella rubrica normale
 verrano visualizzate le ultime chiamate e si ricordera tutto dall'ultimo acesso.
