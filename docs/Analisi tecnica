@@ -16,11 +16,11 @@ Set Nascosto()
 classe Main{
 Contatto[] Gestore
 Metodo Menu{
-Metodo Inserimento Contatti ()
-Metodo Modifica contatti ()
-Metodo Cerca contatto ()  //cerca tramite nome, e avra la funzione per andare nell'altro gestore
-Metodo Eliminazione contatti ()
-Metodo Visualizza contatti ()
+Metodo leggiPersona () //vengono inserite le informazioni di un contatto per essere aggiunto o letto
+Metodo Modifica ()
+Metodo Cerca()  //cerca tramite nome, e avra la funzione per andare nell'altro gestore
+Metodo Eliminazione ()
+Metodo Visualizza ()
 Metodo AggiuntaSaldo ()
 Metodo Telefona ()
 }

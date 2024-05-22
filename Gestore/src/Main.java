@@ -21,10 +21,10 @@ public class Main {
                 "[9] Salva file",
                 "[10] Carica file",
                 "[11] Fine"};
-
+        String password="123456";
         boolean Sitel = true;  // Variabile di controllo per la lettura dei dati
         final int nMax = 3;    // Numero massimo di contatti gestiti
-        boolean Hidden=false;
+        boolean Hidden=false;  // Variabile per determinare se si è nel menù nascosto o no
         int contrattiVenduti = 0; // Contatore dei contatti venduti
         int posizione = 0; // Variabile per tenere traccia della posizione dell'array
         Contatto[] gestore = new Contatto[nMax]; // Array di contatti
@@ -48,7 +48,7 @@ public class Main {
                 case 2: {
                     // Visualizzazione dei contatti
                     if (contrattiVenduti != 0) {
-                        visualizza(gestore, contrattiVenduti);
+                        visualizza(gestore, contrattiVenduti,Hidden);
                         Wait(2);
                     } else {
                         System.out.println("Non ci sono contratti\n");
@@ -60,11 +60,20 @@ public class Main {
                 case 3: {
                     // Ricerca di un contatto
                     if (contrattiVenduti != 0) {
-                        if (ricerca(gestore, leggiPersona(false, keyboard,Hidden), contrattiVenduti)) {
+                        int ricerca = ricerca(gestore, leggiPersona(false, keyboard,Hidden), contrattiVenduti, password);
+                        if (ricerca==1) {
                             System.out.println("Il contatto esiste");
                             Wait(2);
-                        } else {
+                        }else if(ricerca==0) {
                             System.out.println("Il contatto non esiste");
+                            Wait(2);
+                        } else if(ricerca==-1) {
+                            System.out.println("Password inserita corretta");
+                            if(!Hidden){
+                                Hidden=true;
+                            }else{
+                                Hidden=false;
+                            }
                             Wait(2);
                         }
                     } else {
@@ -201,12 +210,14 @@ public class Main {
     }
 
     // Funzione per cercare un contatto nell'array dei contatti
-    private static boolean ricerca(Contatto[] gestore, Contatto contatto, int contrattiVenduti) {
-        boolean ricerca = false;
+    private static int ricerca(Contatto[] gestore, Contatto contatto, int contrattiVenduti,String password) {
+        int ricerca = 0;
         for (int i = 0; i < contrattiVenduti; i++) {
             if (contatto.nome.equals(gestore[i].nome) && contatto.cognome.equals(gestore[i].cognome)) {
-                ricerca = true;
+                ricerca = 1;
                 break;
+            }else if(contatto.nome.equals(password)){
+                ricerca = -1;
             }
         }
         return ricerca;
@@ -225,9 +236,11 @@ public class Main {
     }
 
     // Funzione per visualizzare tutti i contatti
-    private static void visualizza(Contatto[] gestore, int contrattiVenduti) {
+    private static void visualizza(Contatto[] gestore, int contrattiVenduti,boolean Hidden) {
         for (int i = 0; i < contrattiVenduti; i++) {
-            System.out.println(gestore[i].toString());
+            if(gestore[i].nascosto==false||gestore[i].nascosto==true && Hidden==true) {
+                System.out.println(gestore[i].toString());
+            }
         }
     }
 
