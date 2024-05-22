@@ -101,21 +101,33 @@ public class Main {
                     break;
 
                 case 5:
-                    // Modifica del numero telefonico di un contatto
+                    // Modifica del numero telefonico di un contatto e della visualizazzione
                     Contatto numero = new Contatto();
                     int scelta;
                     if (contrattiVenduti != 0) {
                         posizione = RicercaIndex(gestore, leggiPersona(false, keyboard,Hidden), contrattiVenduti);
                         if (posizione != -1) {
                             System.out.println("Vuoi modificare il numero telefonico (si = 1 | no = 0): ");
+                            if(Hidden){
+                                System.out.println("Se vuoi rendere il contatto visibile inserisci: 2 ");
+                                System.out.println("Se vuoi rendere il contatto non visibile inserisci: 3 ");
+                            }
                             scelta = keyboard.nextInt();
                             keyboard.nextLine();
                             if (scelta == 1) {
                                 System.out.println("Modifica numero telefonico: ");
                                 numero.telefono = keyboard.nextLine();
                                 gestore[posizione].telefono = numero.telefono;
-                            } else {
+                            } else if(scelta == 0){
                                 System.out.println("Numero telefonico non modificato");
+                                Wait(2);
+                            } else if(scelta == 2 && Hidden){
+                                gestore[posizione].nascosto = false;
+                                System.out.println("Contatto reso Visibile");
+                                Wait(2);
+                            } else if(scelta == 3 && Hidden){
+                                gestore[posizione].nascosto = true;
+                                System.out.println("Contatto reso non visibile");
                                 Wait(2);
                             }
                         } else {
@@ -132,7 +144,7 @@ public class Main {
                     if (contrattiVenduti != 0) {
                         posizione = RicercaIndex(gestore, leggiPersona(false, keyboard,Hidden), contrattiVenduti);
                         if (posizione != -1) {
-                            contrattiVenduti = cancellazione(gestore, posizione, contrattiVenduti);
+                            contrattiVenduti = cancellazione(gestore, posizione, contrattiVenduti, Hidden);
                         } else {
                             System.out.println("Contatto inesistente");
                             Wait(2);
@@ -245,13 +257,15 @@ public class Main {
     }
 
     // Funzione per cancellare un contatto dall'array
-    public static int cancellazione(Contatto[] gestore, int posizione, int contrattiVenduti) {
-        if (posizione != gestore.length - 1) {
-            for (int i = posizione; i < contrattiVenduti - 1; i++) {
-                gestore[i] = gestore[i + 1];
+    public static int cancellazione(Contatto[] gestore, int posizione, int contrattiVenduti,boolean Hidden) {
+        if(gestore[posizione].nascosto==false||gestore[posizione].nascosto==true&&Hidden==true){
+            if (posizione != gestore.length - 1) {
+                for (int i = posizione; i < contrattiVenduti - 1; i++) {
+                    gestore[i] = gestore[i + 1];
+                }
             }
+            contrattiVenduti--;
         }
-        contrattiVenduti--;
         return contrattiVenduti;
     }
 
@@ -260,18 +274,20 @@ public class Main {
         Contatto ricarica = new Contatto();
         int posizione;
         if (contrattiVenduti != 0) {
-            posizione = RicercaIndex(gestore, leggiPersona(false, keyboard,Hidden), contrattiVenduti);
-            if (posizione != -1) {
-                System.out.println("Inserire la ricarica");
-                ricarica.saldo = Integer.parseInt(keyboard.nextLine());
-                gestore[posizione].saldo += ricarica.saldo;
+            posizione = RicercaIndex(gestore, leggiPersona(false, keyboard, Hidden), contrattiVenduti);
+            if (gestore[posizione].nascosto == false || gestore[posizione].nascosto == true && Hidden == true) {
+                if (posizione != -1) {
+                    System.out.println("Inserire la ricarica");
+                    ricarica.saldo = Integer.parseInt(keyboard.nextLine());
+                    gestore[posizione].saldo += ricarica.saldo;
+                } else {
+                    System.out.println("Contatto non trovato");
+                    Wait(2);
+                }
             } else {
-                System.out.println("Contatto non trovato");
+                System.out.println("Non sono ancora presenti contratti venduti");
                 Wait(2);
             }
-        } else {
-            System.out.println("Non sono ancora presenti contratti venduti");
-            Wait(2);
         }
     }
 
@@ -280,25 +296,27 @@ public class Main {
         int posizione;
         if (contrattiVenduti != 0) {
             posizione = RicercaIndex(gestore, leggiPersona(false, keyboard, Hidden), contrattiVenduti);
-            if (posizione != -1) {
-                System.out.println("Telefonata in corso");
-                Wait(1);
-                System.out.println(".");
-                Wait(1);
-                System.out.println(".");
-                Wait(1);
-                System.out.println(".");
-                Wait(1);
-                System.out.println("Telefonata terminata");
-                Wait(2);
-                gestore[posizione].saldo--;
+            if (gestore[posizione].nascosto == false || gestore[posizione].nascosto == true && Hidden == true) {
+                if (posizione != -1) {
+                    System.out.println("Telefonata in corso");
+                    Wait(1);
+                    System.out.println(".");
+                    Wait(1);
+                    System.out.println(".");
+                    Wait(1);
+                    System.out.println(".");
+                    Wait(1);
+                    System.out.println("Telefonata terminata");
+                    Wait(2);
+                    gestore[posizione].saldo--;
+                } else {
+                    System.out.println("Contatto non trovato");
+                    Wait(2);
+                }
             } else {
-                System.out.println("Contatto non trovato");
+                System.out.println("Non sono ancora presenti contratti venduti");
                 Wait(2);
             }
-        } else {
-            System.out.println("Non sono ancora presenti contratti venduti");
-            Wait(2);
         }
     }
 
