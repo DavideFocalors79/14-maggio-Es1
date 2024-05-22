@@ -29,7 +29,7 @@ public class Main {
         int posizione = 0; // Variabile per tenere traccia della posizione dell'array
         Contatto[] gestore = new Contatto[nMax]; // Array di contatti
 
-        Scanner keyboard = new Scanner(System.in); // Scanner per la lettura degli input
+        Scanner keyboard = new Scanner(System.in); // Scanner per la lettura degli inpùt
 
         boolean fine = true; // Variabile di controllo del ciclo principale
         do {
@@ -229,17 +229,6 @@ public class Main {
         for (int i = 0; i < contrattiVenduti; i++) {
             System.out.println(gestore[i].toString());
         }
-    }
-
-    // Funzione per contare i contatti di tipo abitazione
-    private static int contaContattiAbitazione(Contatto[] gestore, int contrattiVenduti) {
-        int contAbitazione = 0;
-        for (int i = 0; i < contrattiVenduti; i++) {
-            if (gestore[i].tipo == tipoContratto.abitazione) {
-                contAbitazione++;
-            }
-        }
-        return contAbitazione;
     }
 
     // Funzione per cancellare un contatto dall'array

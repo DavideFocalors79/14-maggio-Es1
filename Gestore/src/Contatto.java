@@ -7,19 +7,6 @@ public class Contatto {
     public tipoContratto tipo;
     public double saldo;
     public boolean nascosto;
-    /*public Contatto(String nome, String cognome) {
-        this.nome=nome;
-        this.ricarica=10;
-    }
-    public String getNome(){
-        return this.nome.toUpperCase();
-    }
-    public void setTelefono(String telefono){
-        this.telefono=telefono;
-    }
-    public String getTelefono(){
-        return this.telefono;
-    }*/
 
     public String stampa()
     {
